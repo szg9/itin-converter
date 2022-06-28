@@ -84,11 +84,19 @@ function App() {
         isAllCharNumber(sourceArr[i]) &&
         sourceArr[i] != undefined) {
         times.push(sourceArr[i]);
+      } else if (isCharLength(6, sourceArr[i]) &&
+        sourceArr[i].charAt(4) === "+" &&
+        sourceArr[i].charAt(5) === "1") {
+        times.push(sourceArr[i]);
       }
     }
     if (times.length === 2) {
       let depTime = formatTime(times[0]);
       let arrTime = formatTime(times[1]);
+      timeString = depTime + " - " + arrTime;
+    } else if (times.length === 3) {
+      let depTime = formatTime(times[1]);
+      let arrTime = formatTime(times[2]);
       timeString = depTime + " - " + arrTime;
     }
     return timeString;
