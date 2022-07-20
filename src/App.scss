@@ -81,6 +81,9 @@ h1 {
     margin-top: 2em;
     padding: 2em;
     border-top: .1em solid #3325664f;
-    white-space: pre-line;
-    color: #332566;
+
+    p {
+        color: #332566;
+        margin: 0;
+    }
 }

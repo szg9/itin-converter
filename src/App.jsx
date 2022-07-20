@@ -4,7 +4,7 @@ import airports from './db/airports.json';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState([]);
 
   function isCharLength(wordLength, word) {
     if (word.length == wordLength) {
@@ -169,7 +169,8 @@ function App() {
       const line = lineArray[i];
       convertedLines.push(getFullLine(line.split(' ')));
     }
-    convertedLines = selectRightLines(convertedLines).join('\n');
+    convertedLines = selectRightLines(convertedLines);
+    console.log(convertedLines);
     return convertedLines;
   }
 
@@ -209,9 +210,11 @@ function App() {
         </svg>
         <p>Magic</p>
       </button>
-      <div className='result'>{result}</div>
+      <div className='result'>
+        {result.map(result =>
+          <p>{result}</p>)}
+      </div>
     </div>
-
   );
 }
 
