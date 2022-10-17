@@ -170,7 +170,6 @@ function App() {
       convertedLines.push(getFullLine(line.split(' ')));
     }
     convertedLines = selectRightLines(convertedLines);
-    console.log(convertedLines);
     return convertedLines;
   }
 
@@ -195,7 +194,11 @@ function App() {
   }
 
   function handleButtonClick() {
-    setResult(convertLines(splitInputToLines(inputValue)));
+    const lineArray = splitInputToLines(inputValue);
+    const cleanedLines = convertLines(lineArray);
+    console.log(inputValue);
+    console.log(cleanedLines);
+    setResult(cleanedLines);
   }
 
   return (
