@@ -30,7 +30,7 @@ function App() {
   function isValidCity(word) {
     let isValidCity = false;
     for (const airport in airports) {
-      if (word == airports[airport].iata) {
+      if (word === airports[airport].iata) {
         isValidCity = true
         break;
       }
@@ -196,8 +196,6 @@ function App() {
   function handleButtonClick() {
     const lineArray = splitInputToLines(inputValue);
     const cleanedLines = convertLines(lineArray);
-    console.log(inputValue);
-    console.log(cleanedLines);
     setResult(cleanedLines);
   }
 
