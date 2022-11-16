@@ -219,7 +219,6 @@ function App() {
       const lineByWords = lineArray[i].split(' ');
       convertedLines.push(getFullLine(lineByWords));
     }
-    console.log(convertedLines);
     convertedLines = selectRightLines(convertedLines);
     return convertedLines;
   }
