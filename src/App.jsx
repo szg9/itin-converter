@@ -155,8 +155,58 @@ function App() {
     return flightNumber;
   }
 
+  function getOperatedBy(sourceArr) {
+    let operatedLine = "";
+    for (let i = 0; i < sourceArr.length; i++) {
+      if (sourceArr[i] === "OPERATED") {
+        operatedLine = sourceArr[i] + " " + sourceArr[i + 1] + " " + sourceArr[i + 2];
+      }
+    }
+    return operatedLine;
+  }
+
+  function isLineFull(line) {
+    let isLineFull = false;
+    const lineLength = line.split('  ').length;
+    const isLineEmpty = !line.split('  ').includes('');
+    if (lineLength === 4 && isLineEmpty) {
+      isLineFull = true;
+    }
+    return isLineFull;
+  }
+
+  function isLineOperated(line) {
+    let isLineOperated = false;
+    if (line.includes("OPERATED")) {
+      isLineOperated = true;
+    }
+    return isLineOperated;
+  }
+
+  function deleteRecurringLine(rightLineArray) {
+    for (let i = 0; i < rightLineArray.length; i++) {
+      const rightLine = rightLineArray[i];
+      const nextRightLine = rightLineArray[i + 1];
+      if (rightLine === nextRightLine) {
+        rightLineArray.splice(i + 1, 1)
+      }
+    }
+  }
+
+  function selectRightLines(lineArray) {
+    const rightLines = [];
+    for (let i = 0; i < lineArray.length; i++) {
+      const line = lineArray[i];
+      if (isLineFull(line) || isLineOperated(line)) {
+        rightLines.push(line);
+      }
+    }
+    deleteRecurringLine(rightLines);
+    return rightLines;
+  }
+
   function getFullLine(sourceArr) {
-    let fullLine = getFlightNumber(sourceArr) + "  " + getDate(sourceArr) + "  " + getCityPair(sourceArr) + "  " + getTimes(sourceArr);
+    let fullLine = getOperatedBy(sourceArr) + getFlightNumber(sourceArr) + "  " + getDate(sourceArr) + "  " + getCityPair(sourceArr) + "  " + getTimes(sourceArr);
     if (fullLine === "      ") {
       fullLine = ""
     }
@@ -166,9 +216,10 @@ function App() {
   function convertLines(lineArray) {
     let convertedLines = [];
     for (let i = 0; i < lineArray.length; i++) {
-      const line = lineArray[i];
-      convertedLines.push(getFullLine(line.split(' ')));
+      const lineByWords = lineArray[i].split(' ');
+      convertedLines.push(getFullLine(lineByWords));
     }
+    console.log(convertedLines);
     convertedLines = selectRightLines(convertedLines);
     return convertedLines;
   }
@@ -177,26 +228,15 @@ function App() {
     return input.split('\n');
   }
 
-  function selectRightLines(lineArray) {
-    const rightLines = [];
-    for (let i = 0; i < lineArray.length; i++) {
-      const line = lineArray[i];
-      if (line.split('  ').length === 4 && !line.split('  ').includes('')) {
-        rightLines.push(line);
-      }
-    }
-    return rightLines;
+  function handleButtonClick() {
+    const lineArray = splitInputToLines(inputValue);
+    const cleanedLines = convertLines(lineArray);
+    setResult(cleanedLines);
   }
 
   function handleInputChange(e) {
     const value = e.target.value;
     setInputValue(value);
-  }
-
-  function handleButtonClick() {
-    const lineArray = splitInputToLines(inputValue);
-    const cleanedLines = convertLines(lineArray);
-    setResult(cleanedLines);
   }
 
   return (
