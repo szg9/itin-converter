@@ -159,7 +159,8 @@ function App() {
     let operatedLine = "";
     for (let i = 0; i < sourceArr.length; i++) {
       if (sourceArr[i] === "OPERATED") {
-        operatedLine = sourceArr[i] + " " + sourceArr[i + 1] + " " + sourceArr[i + 2];
+        console.log(sourceArr);
+        operatedLine = sourceArr.join(' ');
       }
     }
     return operatedLine;
