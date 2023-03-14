@@ -159,7 +159,6 @@ function App() {
     let operatedLine = "";
     for (let i = 0; i < sourceArr.length; i++) {
       if (sourceArr[i] === "OPERATED") {
-        console.log(sourceArr);
         operatedLine = sourceArr.join(' ');
       }
     }
@@ -177,6 +176,7 @@ function App() {
   }
 
   function isLineOperated(line) {
+    console.log("islineoperated line: " + line)
     let isLineOperated = false;
     if (line.includes("OPERATED")) {
       isLineOperated = true;
@@ -207,7 +207,13 @@ function App() {
   }
 
   function getFullLine(sourceArr) {
-    let fullLine = getOperatedBy(sourceArr) + getFlightNumber(sourceArr) + "  " + getDate(sourceArr) + "  " + getCityPair(sourceArr) + "  " + getTimes(sourceArr);
+    console.log("getfullline: " + sourceArr)
+    let fullLine = "";
+    if (getOperatedBy(sourceArr) === "") {
+      fullLine = getFlightNumber(sourceArr) + "  " + getDate(sourceArr) + "  " + getCityPair(sourceArr) + "  " + getTimes(sourceArr)
+    } else {
+      fullLine = getOperatedBy(sourceArr)
+    }
     if (fullLine === "      ") {
       fullLine = ""
     }
