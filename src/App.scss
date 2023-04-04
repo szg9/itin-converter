@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
 
 * {
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Calibri', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -77,15 +77,38 @@ h1 {
     }
 }
 
-.result {
+.air-en {
+
     margin-top: 2em;
     padding: 2em;
-    border-top: .1em solid #3325664f;
-    text-align: center;
+
+    .result {
+
+        p {
+            line-height: normal;
+            color: black;
+            margin: 0;
+        }
+    }
 
     p {
-        color: black;
-        font-family: Calibri, sans-serif;
-        margin: 0;
+        line-height: 0;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .italic {
+        font-style: italic;
+        line-height: normal;
+    }
+
+    span {
+        font-weight: bold;
+
+        .red {
+            color: red;
+        }
     }
 }

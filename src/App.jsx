@@ -256,10 +256,31 @@ function App() {
         </svg>
         <p>Magic</p>
       </button>
-      <div className='result'>
-        {result.map(result =>
-          <p>{result}</p>)}
+
+      <div className='air-en'>
+        <p className='bold'>Option 1 – British Airways</p>
+        <p><br /></p>
+        <div className='result'>
+          {result.map(result =>
+            <p>{result}</p>)}
+        </div>
+        <p><br /></p>
+        <p><span>Price#1: 50 000 HUF</span></p>
+        <p>Cabin: <span>Standard Economy</span></p>
+        <p>Change: <span>100 EUR base fee + fare difference may apply</span></p>
+        <p>Refund: <span>not permitted</span></p>
+        <p>Maximum validity: <span>1 year</span></p>
+        <p>Seat reservation: <span>optional / payable <span className='red'>VAGY</span> standard seat reservation included</span></p>
+        <p>Checked bag: <span>1 pc (23 kg) included</span></p>
+        <p><span>Not possible to hold, instant purchase needed</span></p>
+        <p><br /></p>
+        <p><span>No booking made, prices are subject to change.</span></p>
+        <p><br /></p>
+        <p className='italic'>Please note, fares based on actual availability at time of quoting and subject to availability at time of reservation. Reservation is only possible if full passenger name advised (as it appears in the passport).</p>
+
+
       </div>
+
     </div>
   );
 }
