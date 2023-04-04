@@ -93,6 +93,7 @@ function App() {
     if (times.length === 2) {
       let depTime = formatTime(times[0]);
       let arrTime = formatTime(times[1]);
+      console.log(depTime, arrTime)
       timeString = depTime + " - " + arrTime;
     } else if (times.length === 3) {
       let depTime = formatTime(times[1]);
@@ -176,7 +177,6 @@ function App() {
   }
 
   function isLineOperated(line) {
-    console.log("islineoperated line: " + line)
     let isLineOperated = false;
     if (line.includes("OPERATED")) {
       isLineOperated = true;
@@ -207,7 +207,6 @@ function App() {
   }
 
   function getFullLine(sourceArr) {
-    console.log("getfullline: " + sourceArr)
     let fullLine = "";
     if (getOperatedBy(sourceArr) === "") {
       fullLine = getFlightNumber(sourceArr) + "  " + getDate(sourceArr) + "  " + getCityPair(sourceArr) + "  " + getTimes(sourceArr)
