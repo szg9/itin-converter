@@ -22,6 +22,14 @@ function App() {
     }
   }
 
+  function isName(sourceArr) {
+    let isName = false
+    if (sourceArr[0].includes('/')) {
+      isName = true
+    }
+    return isName;
+  }
+
   function lastGivenChars(number, word) {
     const startIndex = word.length - number;
     return word.slice(startIndex);
@@ -86,7 +94,7 @@ function App() {
         times.push(sourceArr[i]);
       } else if (isCharLength(6, sourceArr[i]) &&
         sourceArr[i].charAt(4) === "+" &&
-        sourceArr[i].charAt(5) === "1" || 
+        sourceArr[i].charAt(5) === "1" ||
         sourceArr[i].charAt(5) === "2") {
         times.push(sourceArr[i]);
       }
@@ -94,7 +102,6 @@ function App() {
     if (times.length === 2) {
       let depTime = formatTime(times[0]);
       let arrTime = formatTime(times[1]);
-      console.log(depTime, arrTime)
       timeString = depTime + " - " + arrTime;
     } else if (times.length === 3) {
       let depTime = formatTime(times[1]);
@@ -185,6 +192,14 @@ function App() {
     return isLineOperated;
   }
 
+  function isLineName(line) {
+    let isLineName = false;
+    if (line.includes("/")) {
+      isLineName = true;
+    }
+    return isLineName;
+  }
+
   function deleteRecurringLine(rightLineArray) {
     for (let i = 0; i < rightLineArray.length; i++) {
       const rightLine = rightLineArray[i];
@@ -199,7 +214,7 @@ function App() {
     const rightLines = [];
     for (let i = 0; i < lineArray.length; i++) {
       const line = lineArray[i];
-      if (isLineFull(line) || isLineOperated(line)) {
+      if (isLineFull(line) || isLineOperated(line) || (isLineName(line) && i ===0 )) {
         rightLines.push(line);
       }
     }
@@ -210,7 +225,7 @@ function App() {
   function getFullLine(sourceArr) {
     let fullLine = "";
     if (getOperatedBy(sourceArr) === "") {
-      fullLine = getFlightNumber(sourceArr) + "  " + getDate(sourceArr) + "  " + getCityPair(sourceArr) + "  " + getTimes(sourceArr)
+      fullLine = getFlightNumber(sourceArr) + "  " + getDate(sourceArr) + "  " + getCityPair(sourceArr) + "  " + getTimes(sourceArr);
     } else {
       fullLine = getOperatedBy(sourceArr)
     }
@@ -224,6 +239,9 @@ function App() {
     let convertedLines = [];
     for (let i = 0; i < lineArray.length; i++) {
       const lineByWords = lineArray[i].split(' ');
+      if (isName(lineByWords) && i === 0) {
+        convertedLines.push(lineByWords.join(' '));
+      }
       convertedLines.push(getFullLine(lineByWords));
     }
     convertedLines = selectRightLines(convertedLines);
