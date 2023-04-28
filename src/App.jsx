@@ -232,6 +232,7 @@ function App() {
     if (fullLine === "      ") {
       fullLine = ""
     }
+    console.log(fullLine)
     return fullLine;
   }
 
