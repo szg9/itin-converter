@@ -94,8 +94,8 @@ function App() {
         times.push(sourceArr[i]);
       } else if (isCharLength(6, sourceArr[i]) &&
         sourceArr[i].charAt(4) === "+" &&
-        sourceArr[i].charAt(5) === "1" ||
-        sourceArr[i].charAt(5) === "2") {
+        (sourceArr[i].charAt(5) === "1" ||
+        sourceArr[i].charAt(5) === "2")) {
         times.push(sourceArr[i]);
       }
     }
