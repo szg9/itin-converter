@@ -77,38 +77,13 @@ h1 {
     }
 }
 
-.air-en {
+.result {
 
     margin-top: 2em;
     padding: 2em;
-
-    .result {
-
-        p {
-            line-height: normal;
-            color: black;
-            margin: 0;
-        }
-    }
+    border-top: .1em solid #3325664f;
 
     p {
         line-height: 0;
-    }
-
-    .bold {
-        font-weight: bold;
-    }
-
-    .italic {
-        font-style: italic;
-        line-height: normal;
-    }
-
-    span {
-        font-weight: bold;
-
-        .red {
-            color: red;
-        }
     }
 }
