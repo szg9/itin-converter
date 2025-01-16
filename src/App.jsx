@@ -24,9 +24,11 @@ function App() {
 
   function isName(sourceArr) {
     let isName = false
-    if (sourceArr[0].includes('/')) {
-      isName = true
-    }
+    for (let i = 0; i < sourceArr.length; i++) {
+      if (sourceArr[i].includes('/')) {
+        isName = true
+      }
+    };
     return isName;
   }
 
@@ -95,7 +97,7 @@ function App() {
       } else if (isCharLength(6, sourceArr[i]) &&
         sourceArr[i].charAt(4) === "+" &&
         (sourceArr[i].charAt(5) === "1" ||
-        sourceArr[i].charAt(5) === "2")) {
+          sourceArr[i].charAt(5) === "2")) {
         times.push(sourceArr[i]);
       }
     }
@@ -214,7 +216,7 @@ function App() {
     const rightLines = [];
     for (let i = 0; i < lineArray.length; i++) {
       const line = lineArray[i];
-      if (isLineFull(line) || isLineOperated(line) || (isLineName(line) && i ===0 )) {
+      if (isLineFull(line) || isLineOperated(line) || (isLineName(line) && i === 0)) {
         rightLines.push(line);
       }
     }
@@ -239,8 +241,13 @@ function App() {
     let convertedLines = [];
     for (let i = 0; i < lineArray.length; i++) {
       const lineByWords = lineArray[i].split(' ');
+      console.log(lineByWords)
       if (isName(lineByWords) && i === 0) {
-        convertedLines.push(lineByWords.join(' '));
+        let nameLine = lineByWords.join(' ');
+        if (nameLine.startsWith('1.')) {
+          nameLine = nameLine.slice(2);
+        }
+        convertedLines.push(nameLine);
       }
       convertedLines.push(getFullLine(lineByWords));
     }
@@ -277,8 +284,8 @@ function App() {
       </button>
 
       <div className='result'>
-        {result.map(result =>
-          <p>{result}</p>)}
+        {result.map((result, i) =>
+          <p key={i}>{result}</p>)}
       </div>
     </div>
   );
